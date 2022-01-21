@@ -32,7 +32,7 @@ type OneMerge interface {
 	// MergeFinished Called by IndexWriter after the merge is done and all readers have been closed.
 	MergeFinished(success, segmentDropped bool) error
 
-	//Closes this merge and releases all merge readers
+	// Close Closes this merge and releases all merge readers
 	Close(success, segmentDropped bool)
 }
 
