@@ -18,7 +18,7 @@ package index
 // called on that DWPT without synchronization (most of the "heavy lifting" is in this call). Once a
 // DWPT fills up enough RAM or hold enough documents in memory the DWPT is checked out for flush and
 // all changes are written to the directory. Each DWPT corresponds to one segment being written.
-// *
+//
 // When flush is called by IndexWriter we check out all DWPTs that are associated with the
 // current {@link DocumentsWriterDeleteQueue} out of the {@link DocumentsWriterPerThreadPool} and
 // write them to disk. The flush process can piggy-back on incoming indexing threads or even block
@@ -40,4 +40,40 @@ package index
 // until the exception was hit. When this happens, we immediately mark the document as deleted so
 // that the document is always atomically ("all or none") added to the index.
 type DocumentsWriter struct {
+	pendingNumDocs int64
+
+	flushNotifications FlushNotifications
+
+	closed bool
+
+	//infoStream InfoStream
+
+	config *LiveIndexWriterConfig
+}
+
+// FlushNotifications TODO maybe we find a better name for this?
+type FlushNotifications interface {
+	// DeleteUnusedFiles Called when files were written to disk that are not used anymore. It's the implementation's
+	// responsibility to clean these files up
+	DeleteUnusedFiles(files []string)
+
+	// FlushFailed Called when a segment failed to flush.
+	FlushFailed(info *SegmentInfo)
+
+	// AfterSegmentsFlushed Called after one or more segments were flushed to disk.
+	AfterSegmentsFlushed() error
+
+	// OnTragicEvent Should be called if a flush or an indexing operation caused a tragic / unrecoverable event.
+	OnTragicEvent(err error, message string)
+
+	// OnDeletesApplied Called once deletes have been applied either after a flush or on a deletes call
+	OnDeletesApplied()
+
+	// OnTicketBacklog Called once the DocumentsWriter ticket queue has a backlog. This means there is an inner
+	// thread that tries to publish flushed segments but can't keep up with the other threads
+	// flushing new segments. This likely requires other thread to forcefully purge the buffer to
+	// help publishing. This can't be done in-place since we might hold index writer locks when this
+	// is called. The caller must ensure that the purge happens without an index writer lock being
+	// held.
+	OnTicketBacklog()
 }

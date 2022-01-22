@@ -92,3 +92,8 @@ func (d *Document) GetValues() []string {
 func (d *Document) Clear() {
 	d.fields = d.fields[:0]
 }
+
+type Node struct {
+	Value *Field
+	Next  *Node
+}
