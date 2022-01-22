@@ -1,6 +1,6 @@
 package index
 
-// StandardDirectoryReader Default implementation of {@link DirectoryReader}.
+// StandardDirectoryReader Default implementation of DirectoryReader}.
 type StandardDirectoryReader interface {
 	DirectoryReader
 }

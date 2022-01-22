@@ -4,9 +4,9 @@ import "io"
 
 // A Tokenizer is a TokenStream whose input is a Reader.
 //
-// This is an abstract class; subclasses must override {@link #incrementToken()}
+// This is an abstract class; subclasses must override #incrementToken()}
 //
-// NOTE: Subclasses overriding IncrementToken() must call {@link
+// NOTE: Subclasses overriding IncrementToken() must call
 // AttributeSource#clearAttributes()} before setting attributes.
 type Tokenizer interface {
 	TokenStream

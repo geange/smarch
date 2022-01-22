@@ -22,25 +22,25 @@ type Analyzer interface {
 	// implementation returns the TokenStream as-is. This is used by #normalize(String, String).
 	Normalize(fieldName string, in TokenStream) (TokenStream, error)
 
-	// TokenStreamV1 Returns a TokenStream suitable for <code>fieldName</code>, tokenizing the contents of <code>
-	// reader</code>.
+	// TokenStreamV1 Returns a TokenStream suitable for fieldName, tokenizing the contents of
+	// reader.
 	//
-	// <p>This method uses {@link #createComponents(String)} to obtain an instance of {@link
+	// This method uses #createComponents(String)} to obtain an instance of
 	// TokenStreamComponents}. It returns the sink of the components and stores the components
 	// internally. Subsequent calls to this method will reuse the previously stored components after
-	// resetting them through {@link TokenStreamComponents#setReader(Reader)}.
+	// resetting them through TokenStreamComponents#setReader(Reader)}.
 	//
-	// <p><b>NOTE:</b> After calling this method, the consumer must follow the workflow described in
-	// {@link TokenStream} to properly consume its contents. See the {@link org.apache.lucene.analysis
+	// NOTE: After calling this method, the consumer must follow the workflow described in
+	// TokenStream} to properly consume its contents. See the org.apache.lucene.analysis
 	// Analysis package documentation} for some examples demonstrating this.
 	//
-	// <p><b>NOTE:</b> If your data is available as a String}, use {@link #tokenStream(String,
+	// NOTE: If your data is available as a String}, use #tokenStream(String,
 	// String)} which reuses a StringReader}-like instance internally.
 	TokenStreamV1(fieldName string, reader io.Reader) (TokenStream, error)
 
 	// TokenStreamV2 Returns a TokenStream suitable for fieldName, tokenizing the contents of text.
 	//
-	// <p>This method uses #createComponents(String) to obtain an instance of
+	// This method uses #createComponents(String) to obtain an instance of
 	// TokenStreamComponents. It returns the sink of the components and stores the components
 	// internally. Subsequent calls to this method will reuse the previously stored components after
 	// resetting them through TokenStreamComponents#setReader(Reader).
@@ -66,13 +66,13 @@ type Analyzer interface {
 	InitReader(fieldName string, reader io.Reader) io.Reader
 
 	// InitReaderForNormalization Wrap the given Reader with CharFilters that make sense for normalization. This
-	// is typically a subset of the {@link CharFilter}s that are applied in #initReader(String,
+	// is typically a subset of the CharFilter}s that are applied in #initReader(String,
 	// Reader). This is used by #normalize(String, String).
 	InitReaderForNormalization(fieldName string, reader io.Reader) io.Reader
 
 	// AttributeFactory Return the AttributeFactory to be used for #tokenStream analysis and
 	// #normalize(String, String) normalization on the given FieldName. The default
-	// implementation returns {@link TokenStream#DEFAULT_TOKEN_ATTRIBUTE_FACTORY}.
+	// implementation returns TokenStream#DEFAULT_TOKEN_ATTRIBUTE_FACTORY}.
 	AttributeFactory(fieldName string) AttributeFactory
 
 	// GetPositionIncrementGap Invoked before indexing a IndexableField instance if terms have already been added to that
@@ -108,7 +108,7 @@ type TokenStreamComponents struct {
 	reusableStringReader bytes.Reader
 }
 
-// ReuseStrategy Strategy defining how TokenStreamComponents are reused per call to {@link
+// ReuseStrategy Strategy defining how TokenStreamComponents are reused per call to
 // Analyzer#tokenStream(String, java.io.Reader)}.
 type ReuseStrategy interface {
 

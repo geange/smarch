@@ -6,7 +6,7 @@ type Directory interface {
 	io.Closer
 
 	// ListAll Returns names of all files stored in this directory. The output must be in sorted (UTF-16,
-	// java's {@link String#compareTo}) order.
+	// java's String#compareTo}) order.
 	ListAll() ([]string, error)
 
 	// DeleteFile Removes an existing file in the directory.
@@ -29,7 +29,7 @@ type Directory interface {
 	// CreateTempOutput Creates a new, empty, temporary file in the directory and returns an IndexOutput
 	// instance for appending data to this file.
 	// The temporary file name (accessible via IndexOutput#getName()) will start with
-	// prefix, end with {@code suffix} and have a reserved file extension .tmp.
+	// prefix, end with suffix} and have a reserved file extension .tmp.
 	CreateTempOutput(name string, context *IOContext) (IndexOutput, error)
 
 	// Sync Ensures that any writes to these files are moved to stable storage (made durable).

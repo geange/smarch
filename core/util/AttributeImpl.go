@@ -9,6 +9,7 @@ package util
 // implements clause. AttributeSource reflectively identifies all attributes and makes them
 // available to consumers like TokenStreams.
 type AttributeImpl interface {
+	Attribute
 
 	// Clear Clears the values in this AttributeImpl and resets it to its default value. If this
 	// implementation implements more than one Attribute interface it clears all.

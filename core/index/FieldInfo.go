@@ -212,7 +212,7 @@ func (f *FieldInfo) GetAttribute(key string) string {
 // PutAttribute Puts a codec attribute value.
 //
 // This is a key-value mapping for the field that the codec can use to store additional
-// metadata, and will be available to the codec when reading the segment via {@link
+// metadata, and will be available to the codec when reading the segment via
 // #getAttribute(String)}
 //
 // If a value already exists for the key in the field, it will be replaced with the new value.

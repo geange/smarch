@@ -1,12 +1,12 @@
 package index
 
 // CompositeReader Instances of this reader type can only be used to get stored fields from the underlying
-// LeafReaders, but it is not possible to directly retrieve postings. To do that, get the {@link
+// LeafReaders, but it is not possible to directly retrieve postings. To do that, get the
 // LeafReaderContext for all sub-readers via #leaves().
 //
 // IndexReader instances for indexes on disk are usually constructed with a call to one of the
 // static DirectoryReader.open() methods, e.g. DirectoryReader#open(Directory).
-// DirectoryReader implements the {@code CompositeReader interface, it is not possible to
+// DirectoryReader implements the CompositeReader interface, it is not possible to
 // directly get postings.
 //
 // Concrete subclasses of IndexReader are usually constructed with a call to one of the static

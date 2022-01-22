@@ -6,7 +6,7 @@ import (
 	"io"
 )
 
-// MergeScheduler Expert: {@link IndexWriter uses an instance implementing this interface to execute the merges
+// MergeScheduler Expert: IndexWriter uses an instance implementing this interface to execute the merges
 // selected by a MergePolicy. The default MergeScheduler is ConcurrentMergeScheduler.
 type MergeScheduler interface {
 	io.Closer
@@ -25,7 +25,7 @@ type MergeScheduler interface {
 	// with #message(String):
 	Verbose() bool
 
-	// Message Outputs the given message - this method assumes {@link #verbose()} was called and returned true.
+	// Message Outputs the given message - this method assumes #verbose()} was called and returned true.
 	Message(message string)
 }
 

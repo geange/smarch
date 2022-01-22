@@ -15,7 +15,7 @@ package index
 //
 // NOTE: IndexReader instances are completely thread safe, meaning multiple
 // threads can call any of its methods, concurrently. If your application requires external
-// synchronization, you should not synchronize on the <code>IndexReader</code> instance; use
+// synchronization, you should not synchronize on the IndexReader instance; use
 // your own (non-Lucene) objects instead.
 type LeafReader interface {
 	IndexReader

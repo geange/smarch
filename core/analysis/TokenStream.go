@@ -53,7 +53,7 @@ type TokenStream interface {
 	// the position increment, or any adjustment of other attributes where the end-of-stream value may
 	// be important.
 	//
-	// If you override this method, always call {@code super.end()}.
+	// If you override this method, always call super.end()}.
 	End() error
 
 	// Reset This method is called by a consumer before it begins consumption using IncrementToken().
