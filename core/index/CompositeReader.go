@@ -12,7 +12,7 @@ package index
 // Concrete subclasses of IndexReader are usually constructed with a call to one of the static
 // open() methods, e.g. DirectoryReader#open(Directory).
 //
-// For efficiency, in this API documents are often referred to via <i>document numbers</i>,
+// For efficiency, in this API documents are often referred to via document numbers,
 // non-negative integers which each name a unique document in the index. These document numbers are
 // ephemeral -- they may change as documents are added to and deleted from an index. Clients should
 // thus not rely on a given document having the same number between sessions.

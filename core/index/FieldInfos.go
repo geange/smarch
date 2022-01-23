@@ -2,6 +2,30 @@ package index
 
 import "sync"
 
+// FieldInfos Collection of FieldInfos (accessible by number or by name).
+type FieldInfos struct {
+	fieldInfos []FieldInfo
+
+	hasFreq         bool
+	hasProx         bool
+	hasPayloads     bool
+	hasOffsets      bool
+	hasVectors      bool
+	hasNorms        bool
+	hasDocValues    bool
+	hasPointValues  bool
+	hasVectorValues bool
+
+	softDeletesField string
+
+	// used only by fieldInfo(int)
+	byNumber []FieldInfo
+	byName   map[string]FieldInfo
+
+	// for an unmodifiable iterator
+	values []FieldInfo
+}
+
 type FieldNumbers struct {
 	numberToName map[int]string
 	nameToNumber map[string]int
