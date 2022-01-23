@@ -17,7 +17,7 @@ import "io"
 //
 // The TokenStream-API in Lucene is based on the decorator pattern. Therefore all
 // non-abstract subclasses must be final or have at least a final implementation of
-// #incrementToken}! This is checked when Java assertions are enabled.
+// #incrementToken! This is checked when Java assertions are enabled.
 type TokenStream interface {
 	io.Closer
 
@@ -53,7 +53,7 @@ type TokenStream interface {
 	// the position increment, or any adjustment of other attributes where the end-of-stream value may
 	// be important.
 	//
-	// If you override this method, always call super.end()}.
+	// If you override this method, always call super.end().
 	End() error
 
 	// Reset This method is called by a consumer before it begins consumption using IncrementToken().

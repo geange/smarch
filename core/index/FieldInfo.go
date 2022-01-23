@@ -213,7 +213,7 @@ func (f *FieldInfo) GetAttribute(key string) string {
 //
 // This is a key-value mapping for the field that the codec can use to store additional
 // metadata, and will be available to the codec when reading the segment via
-// #getAttribute(String)}
+// #getAttribute(String)
 //
 // If a value already exists for the key in the field, it will be replaced with the new value.
 // If the value of the attributes for a same field is changed between the documents, the behaviour

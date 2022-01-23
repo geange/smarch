@@ -23,7 +23,7 @@ type IndexDeletionPolicy interface {
 	//
 	// The writer locates all index commits present in the index directory and calls this method.
 	// The policy may choose to delete some of the commit points, doing so by calling method
-	// IndexCommit#delete delete()} of IndexCommit}.
+	// IndexCommit#delete delete() of IndexCommit.
 	//
 	// Note: the last CommitPoint is the most recent one, i.e. the "front index state". Be
 	// careful not to delete it, unless you know for sure what you are doing, and unless you can
@@ -34,10 +34,10 @@ type IndexDeletionPolicy interface {
 	// remove old commit points with each commit.
 	//   *
 	// The policy may now choose to delete old commit points by calling method
-	// IndexCommit#delete delete()} of IndexCommit}.
+	// IndexCommit#delete delete() of IndexCommit.
 	//   *
-	// This method is only called when IndexWriter#commit} or IndexWriter#close} is
-	// called, or possibly not at all if the IndexWriter#rollback} is called.
+	// This method is only called when IndexWriter#commit or IndexWriter#close is
+	// called, or possibly not at all if the IndexWriter#rollback is called.
 	//   *
 	// <u>Note:</u> the last CommitPoint is the most recent one, i.e. the "front index state". Be
 	// careful not to delete it, unless you know for sure what you are doing, and unless you can

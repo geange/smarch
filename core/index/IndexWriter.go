@@ -122,7 +122,7 @@ func (i *IndexWriter) SetMaxDocs(maxDocs int) {
 // session can be quickly made available for searching without closing the writer nor calling
 // #commit.
 //
-// Note that this is functionally equivalent to calling {#flush} and then opening a new reader.
+// Note that this is functionally equivalent to calling #flush and then opening a new reader.
 // But the turnaround time of this method should be faster since it avoids the potentially costly
 // #commit.
 //

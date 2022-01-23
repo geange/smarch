@@ -27,7 +27,7 @@ type IndexCommit interface {
 	Delete()
 
 	// IsDeleted Returns true if this commit should be deleted; this is only used by IndexWriter after
-	// invoking the IndexDeletionPolicy}.
+	// invoking the IndexDeletionPolicy.
 	IsDeleted() bool
 
 	// GetSegmentCount Returns number of segments referenced by this commit.

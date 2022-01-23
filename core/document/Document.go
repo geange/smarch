@@ -83,8 +83,8 @@ func (d *Document) GetFields() []*Field {
 
 // GetValues Returns an array of values of the field specified as the method parameter. This method returns
 // an empty array when there are no matching fields. It never returns null. For a numeric
-// StoredField} it returns the string value of the number. If you want the actual numeric field
-// instances back, use #getFields}.
+// StoredField it returns the string value of the number. If you want the actual numeric field
+// instances back, use #getFields.
 func (d *Document) GetValues() []string {
 	panic("")
 }

@@ -8,7 +8,7 @@ package index
 // is not reentrant and you will see strange exceptions as a result.
 //
 // See DocumentStoredFieldVisitor, which is a StoredFieldVisitor that builds
-// the Document containing all stored fields. This is used by IndexReader#document(int)}.
+// the Document containing all stored fields. This is used by IndexReader#document(int).
 type StoredFieldVisitor interface {
 
 	// BinaryField Process a binary field.

@@ -11,8 +11,8 @@ type Terms interface {
 	// the first term. Note that the provided startTerm must be accepted by the
 	// automaton.
 	//
-	// This is an expert low-level API and will only work for NORMAL} compiled automata. To
-	// handle any compiled automata you should instead use CompiledAutomaton#getTermsEnum}
+	// This is an expert low-level API and will only work for NORMAL compiled automata. To
+	// handle any compiled automata you should instead use CompiledAutomaton#getTermsEnum
 	// instead.
 	//intersect(compiled CompiledAutomaton, startTerm []byte) (TermsEnum, error)
 
@@ -25,7 +25,7 @@ type Terms interface {
 	// like other term measures, this measure does not take deleted documents into account.
 	GetSumTotalTermFreq() (int64, error)
 
-	// GetSumDocFreq Returns the sum of TermsEnum#docFreq()} for all terms in this field. Note that, just
+	// GetSumDocFreq Returns the sum of TermsEnum#docFreq() for all terms in this field. Note that, just
 	// like other term measures, this measure does not take deleted documents into account.
 	GetSumDocFreq() (int64, error)
 
@@ -34,7 +34,7 @@ type Terms interface {
 	GetDocCount() (int, error)
 
 	// HasFreqs Returns true if documents in this field store per-document term frequency (
-	// PostingsEnum#freq}).
+	// PostingsEnum#freq).
 	HasFreqs() bool
 
 	// HasOffsets Returns true if documents in this field store offsets.

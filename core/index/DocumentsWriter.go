@@ -13,14 +13,14 @@ package index
 // Threads:
 //
 // Multiple threads are allowed into addDocument at once. There is an initial synchronized call
-// to DocumentsWriterFlushControl#obtainAndLock()} which allocates a DWPT for this indexing
+// to DocumentsWriterFlushControl#obtainAndLock() which allocates a DWPT for this indexing
 // thread. The same thread will not necessarily get the same DWPT over time. Then updateDocuments is
 // called on that DWPT without synchronization (most of the "heavy lifting" is in this call). Once a
 // DWPT fills up enough RAM or hold enough documents in memory the DWPT is checked out for flush and
 // all changes are written to the directory. Each DWPT corresponds to one segment being written.
 //
 // When flush is called by IndexWriter we check out all DWPTs that are associated with the
-// current DocumentsWriterDeleteQueue} out of the DocumentsWriterPerThreadPool} and
+// current DocumentsWriterDeleteQueue out of the DocumentsWriterPerThreadPool and
 // write them to disk. The flush process can piggy-back on incoming indexing threads or even block
 // them from adding documents if flushing can't keep up with new documents being added. Unless the
 // stall control kicks in to block indexing threads flushes are happening concurrently to actual

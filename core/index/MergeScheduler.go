@@ -25,7 +25,7 @@ type MergeScheduler interface {
 	// with #message(String):
 	Verbose() bool
 
-	// Message Outputs the given message - this method assumes #verbose()} was called and returned true.
+	// Message Outputs the given message - this method assumes #verbose() was called and returned true.
 	Message(message string)
 }
 
