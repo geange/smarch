@@ -5,19 +5,19 @@ package search
 // <p>Instantiable subclasses are:
 //
 // <ul>
-//   <li>{@link TermQuery}
-//   <li>{@link BooleanQuery}
-//   <li>{@link WildcardQuery}
-//   <li>{@link PhraseQuery}
-//   <li>{@link PrefixQuery}
-//   <li>{@link MultiPhraseQuery}
-//   <li>{@link FuzzyQuery}
-//   <li>{@link RegexpQuery}
-//   <li>{@link TermRangeQuery}
-//   <li>{@link PointRangeQuery}
-//   <li>{@link ConstantScoreQuery}
-//   <li>{@link DisjunctionMaxQuery}
-//   <li>{@link MatchAllDocsQuery}
+//   <li>TermQuery}
+//   <li>BooleanQuery}
+//   <li>WildcardQuery}
+//   <li>PhraseQuery}
+//   <li>PrefixQuery}
+//   <li>MultiPhraseQuery}
+//   <li>FuzzyQuery}
+//   <li>RegexpQuery}
+//   <li>TermRangeQuery}
+//   <li>PointRangeQuery}
+//   <li>ConstantScoreQuery}
+//   <li>DisjunctionMaxQuery}
+//   <li>MatchAllDocsQuery}
 // </ul>
 //
 // See also additional queries available in the <a

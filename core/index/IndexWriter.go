@@ -382,7 +382,7 @@ func (i *IndexWriter) TryDeleteDocument(readerIn IndexReader, docID int) (int64,
 }
 
 // TryUpdateDocValue Expert: attempts to update doc values by document ID, as long as the provided reader is a
-// near-real-time reader (from {@link DirectoryReader#open(IndexWriter)}). If the provided reader
+// near-real-time reader (from DirectoryReader#open(IndexWriter)}). If the provided reader
 // is an NRT reader obtained from this writer, and its segment has not been merged away, then the
 // update succeeds and this method returns a valid (&gt; 0) sequence number; else, it returns -1
 // and the caller must then either retry the update and resolve the document again. If a doc
@@ -392,7 +392,7 @@ func (i *IndexWriter) TryDeleteDocument(readerIn IndexReader, docID int) (int64,
 //
 // NOTE: this method can only updates documents visible to the currently open NRT
 // reader. If you need to update documents indexed after opening the NRT reader you must use
-// {@link #updateDocValues(Term, Field...)}.
+// #updateDocValues(Term, Field...)}.
 func (i *IndexWriter) TryUpdateDocValue(readerIn IndexReader, docID int, fields ...Field) (int64, error) {
 	panic("")
 }
@@ -433,11 +433,11 @@ func (i *IndexWriter) UpdateDocument(term *Term, doc *Document) (int64, error) {
 // existing documents can be updated to reflect they are no longer current while atomically adding
 // new documents at the same time.
 //
-// In contrast to {@link #updateDocument(Term, Iterable)} this method will not delete documents
+// In contrast to #updateDocument(Term, Iterable)} this method will not delete documents
 // in the index matching the given term but instead update them with the given doc-values fields
 // which can be used as a soft-delete mechanism.
 //
-// See {@link #addDocuments(Iterable)} and {@link #updateDocuments(Term, Iterable)}.
+// See #addDocuments(Iterable)} and #updateDocuments(Term, Iterable)}.
 func (i *IndexWriter) SoftUpdateDocument(term *Term, doc *Document, softDeletes ...Field) (int64, error) {
 	panic("")
 }
@@ -460,7 +460,7 @@ func (i *IndexWriter) UpdateBinaryDocValue(term *Term, field string, value []byt
 }
 
 // UpdateDocValues Updates documents' DocValues fields to the given values. Each field update is applied to the
-// set of documents that are associated with the {@link Term} to the same value. All updates are
+// set of documents that are associated with the Term} to the same value. All updates are
 // atomically applied and flushed together. If a doc values fields data is <code>null</code> the
 // existing value is removed from all documents matching the term.
 func (i *IndexWriter) UpdateDocValues(term *Term, updates ...Field) (int64, error) {
@@ -482,7 +482,7 @@ func (i *IndexWriter) newSegmentName() string {
 }
 
 // ForceMerge Forces merge policy to merge segments until there are {@code <= maxNumSegments}. The actual
-// merges to be executed are determined by the {@link MergePolicy}.
+// merges to be executed are determined by the MergePolicy}.
 //
 // This is a horribly costly operation, especially when you pass a small {@code
 // maxNumSegments}; usually you should only call this if the index is static (will no longer be
@@ -491,7 +491,7 @@ func (i *IndexWriter) newSegmentName() string {
 // Note that this requires free space that is proportional to the size of the index in your
 // Directory: 2X if you are not using compound file format, and 3X if you are. For example, if
 // your index size is 10 MB then you need an additional 20 MB free for this to complete (30 MB if
-// you're using compound file format). This is also affected by the {@link Codec} that is used to
+// you're using compound file format). This is also affected by the Codec} that is used to
 // execute the merge, and may result in even a bigger index. Also, it's best to call {@link
 // #commit()} afterwards, to allow IndexWriter to free up disk space.
 //
@@ -519,8 +519,8 @@ func (i *IndexWriter) ForceMerge(maxNumSegments int) error {
 	panic("")
 }
 
-// ForceMergev1 Just like {@link #forceMerge(int)}, except you can specify whether the call should block until
-// all merging completes. This is only meaningful with a {@link MergeScheduler} that is able to
+// ForceMergev1 Just like #forceMerge(int)}, except you can specify whether the call should block until
+// all merging completes. This is only meaningful with a MergeScheduler} that is able to
 // run merges in background threads.
 func (i *IndexWriter) ForceMergev1(maxNumSegments int, doWait bool) error {
 	panic("")
@@ -534,7 +534,7 @@ func (i *IndexWriter) ForceMergeDeletes(doWait bool) error {
 }
 
 // ForceMergeDeletesV1 Forces merging of all segments that have deleted documents. The actual merges to be executed
-// are determined by the {@link MergePolicy}. For example, the default {@link TieredMergePolicy}
+// are determined by the MergePolicy}. For example, the default TieredMergePolicy}
 // will only pick a segment if the percentage of deleted docs is over 10%.
 //   *
 // <p>This is often a horribly costly operation; rarely is it warranted.
@@ -582,19 +582,19 @@ func (i *IndexWriter) Rollback() error {
 // DeleteAll Delete all documents in the index.
 //
 // This method will drop all buffered documents and will remove all segments from the index.
-// This change will not be visible until a {@link #commit()} has been called. This method can be
-// rolled back using {@link #rollback()}.
+// This change will not be visible until a #commit()} has been called. This method can be
+// rolled back using #rollback()}.
 //
 // NOTE: this method is much faster than using deleteDocuments( new MatchAllDocsQuery() ). Yet,
-// this method also has different semantics compared to {@link #deleteDocuments(Query...)} since
+// this method also has different semantics compared to #deleteDocuments(Query...)} since
 // internal data-structures are cleared as well as all segment information is forcefully dropped
 // anti-viral semantics like omitting norms are reset or doc value types are cleared. Essentially
-// a call to {@link #deleteAll()} is equivalent to creating a new {@link IndexWriter} with {@link
+// a call to #deleteAll()} is equivalent to creating a new IndexWriter} with {@link
 // OpenMode#CREATE} which a delete query only marks documents as deleted.
 //
 // NOTE: this method will forcefully abort all merges in progress. If other threads are running
-// {@link #forceMerge}, {@link #addIndexes(CodecReader[])} or {@link #forceMergeDeletes} methods,
-// they may receive {@link MergePolicy.MergeAbortedException}s.
+// #forceMerge}, #addIndexes(CodecReader[])} or #forceMergeDeletes} methods,
+// they may receive MergePolicy.MergeAbortedException}s.
 func (i *IndexWriter) DeleteAll() (int64, error) {
 	panic("")
 }
@@ -613,10 +613,10 @@ func (i *IndexWriter) DeleteAll() (int64, error) {
 // segments_N file until all indexes are added. This means if an Exception occurs (for example
 // disk full), then either no indexes will have been added or they all will have been.
 //
-// <p>Note that this requires temporary free space in the {@link Directory} up to 2X the sum of
+// <p>Note that this requires temporary free space in the Directory} up to 2X the sum of
 // all input indexes (including the starting index). If readers/searchers are open against the
 // starting index, then temporary free space required will be higher by the size of the starting
-// index (see {@link #forceMerge(int)} for details).
+// index (see #forceMerge(int)} for details).
 //
 // <p>This requires this index not be among those to be added.
 //
@@ -629,17 +629,17 @@ func (i *IndexWriter) AddIndexes(dirs ...Directory) (int64, error) {
 //   *
 // <p>The provided IndexReaders are not closed.
 //   *
-// <p>See {@link #addIndexes} for details on transactional semantics, temporary free space
+// <p>See #addIndexes} for details on transactional semantics, temporary free space
 // required in the Directory, and non-CFS segments on an Exception.
 //   *
 // <p><b>NOTE:</b> empty segments are dropped by this method and not added to this index.
 //   *
-// <p><b>NOTE:</b> this merges all given {@link LeafReader}s in one merge. If you intend to merge
+// <p><b>NOTE:</b> this merges all given LeafReader}s in one merge. If you intend to merge
 // a large number of readers, it may be better to call this method multiple times, each time with
 // a small set of readers. In principle, if you use a merge policy with a {@code mergeFactor} or
 // {@code maxMergeAtOnce} parameter, you should pass that many readers in one call.
 //   *
-// <p><b>NOTE:</b> this method does not call or make use of the {@link MergeScheduler}, so any
+// <p><b>NOTE:</b> this method does not call or make use of the MergeScheduler}, so any
 // custom bandwidth throttling is at the moment ignored.
 func (i *IndexWriter) AddIndexesByCodec(readers ...CodecReader) (int64, error) {
 	panic("")
@@ -661,10 +661,10 @@ func (i *IndexWriter) doBeforeFlush() error {
 // PrepareCommit Expert: prepare for commit. This does the first phase of 2-phase commit. This method does all
 // steps necessary to commit changes since this writer was opened: flushes pending added and
 // deleted docs, syncs the index files, writes most of next segments_N file. After calling this
-// you must call either {@link #commit()} to finish the commit, or {@link #rollback()} to revert
+// you must call either #commit()} to finish the commit, or #rollback()} to revert
 // the commit and undo all changes done since the writer was opened.
 //   *
-// <p>You can also just call {@link #commit()} directly without prepareCommit first in which case
+// <p>You can also just call #commit()} directly without prepareCommit first in which case
 // that method will internally call prepareCommit.
 func (i *IndexWriter) PrepareCommit() (int64, error) {
 	panic("")
@@ -672,20 +672,20 @@ func (i *IndexWriter) PrepareCommit() (int64, error) {
 
 // FlushNextBuffer Expert: Flushes the next pending writer per thread buffer if available or the largest active
 // non-pending writer per thread buffer in the calling thread. This can be used to flush documents
-// to disk outside of an indexing thread. In contrast to {@link #flush()} this won't mark all
+// to disk outside of an indexing thread. In contrast to #flush()} this won't mark all
 // currently active indexing buffers as flush-pending.
 //
 // <p>Note: this method is best-effort and might not flush any segments to disk. If there is a
 // full flush happening concurrently multiple segments might have been flushed. Users of this API
-// can access the IndexWriters current memory consumption via {@link #ramBytesUsed()}
+// can access the IndexWriters current memory consumption via #ramBytesUsed()}
 func (i *IndexWriter) FlushNextBuffer() (bool, error) {
 	panic("")
 }
 
 // SetLiveCommitData Sets the iterator to provide the commit user data map at commit time. Calling this method is
-// considered a committable change and will be {@link #commit() committed} even if there are no
-// other changes this writer. Note that you must call this method before {@link #prepareCommit()}.
-// Otherwise it won't be included in the follow-on {@link #commit()}.
+// considered a committable change and will be #commit() committed} even if there are no
+// other changes this writer. Note that you must call this method before #prepareCommit()}.
+// Otherwise it won't be included in the follow-on #commit()}.
 //   *
 // <p><b>NOTE:</b> the iterator is late-binding: it is only visited once all documents for the
 // commit have been written to their segments, before the next segments_N file is written
@@ -728,8 +728,8 @@ func (i *IndexWriter) Commit() (int64, error) {
 // HasUncommittedChanges Returns true if there may be changes that have not been committed. There are cases where this
 // may return true when there are no actual "real" changes to the index, for example if you've
 // deleted by Term or Query but that Term or Query does not match any documents. Also, if a merge
-// kicked off as a result of flushing a new segment during {@link #commit}, or a concurrent merged
-// finished, this method may return true right after you had just called {@link #commit}.
+// kicked off as a result of flushing a new segment during #commit}, or a concurrent merged
+// finished, this method may return true right after you had just called #commit}.
 func (i *IndexWriter) HasUncommittedChanges() bool {
 	panic("")
 }
@@ -782,14 +782,14 @@ func (i *IndexWriter) IsOpen() bool {
 // closed the open readers that were preventing their deletion).
 //   *
 // <p>In addition, you can call this method to delete unreferenced index commits. This might be
-// useful if you are using an {@link IndexDeletionPolicy} which holds onto index commits until
+// useful if you are using an IndexDeletionPolicy} which holds onto index commits until
 // some criteria are met, but those commits are no longer needed. Otherwise, those commits will be
 // deleted the next time commit() is called.
 func (i *IndexWriter) DeleteUnusedFiles() error {
 	panic("")
 }
 
-// IncRefDeleter Record that the files referenced by this {@link SegmentInfos} are still in use.
+// IncRefDeleter Record that the files referenced by this SegmentInfos} are still in use.
 func (i *IndexWriter) IncRefDeleter(segmentInfos *SegmentInfos) error {
 	panic("")
 }
@@ -851,6 +851,6 @@ type DocStats struct {
 
 	// The total number of docs in this index, including docs not yet flushed (still in the RAM
 	// buffer), and including deletions. <b>NOTE:</b> buffered deletions are not counted. If you
-	// really need these to be counted you should call {@link IndexWriter#commit()} first.
+	// really need these to be counted you should call IndexWriter#commit()} first.
 	numDocs int
 }

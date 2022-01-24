@@ -49,6 +49,10 @@ type DocumentsWriter struct {
 	//infoStream InfoStream
 
 	config *LiveIndexWriterConfig
+
+	numDocsInRAM int64
+
+	// TODO: cut over to BytesRefHash in BufferedDeletes
 }
 
 // FlushNotifications TODO maybe we find a better name for this?

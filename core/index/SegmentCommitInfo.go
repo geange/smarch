@@ -6,6 +6,7 @@ import (
 )
 
 // SegmentCommitInfo Embeds a [read-only] SegmentInfo and adds per-commit fields.
+// 嵌入 [只读] SegmentInfo 并添加每个提交字段。
 type SegmentCommitInfo struct {
 
 	//The SegmentInfo that we wrap.
